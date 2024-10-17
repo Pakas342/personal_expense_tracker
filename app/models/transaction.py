@@ -3,7 +3,7 @@ from sqlmodel import SQLModel, Field
 from enum import Enum
 
 
-class TransactionType(str,Enum):
+class TransactionType(str, Enum):
     expense = 'expense'
     income = 'income'
 
