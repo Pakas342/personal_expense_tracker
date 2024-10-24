@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends
 from typing import Annotated
 from sqlmodel import Session, select
 
-from ..models import TransactionRead, Transaction
-from ..database import get_session
+from app.models import TransactionRead, Transaction
+from app.database import get_session
 
 transaction_router = APIRouter(
     prefix='/transaction'
@@ -14,7 +14,7 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 @transaction_router.get("/", response_model=list[TransactionRead])
 def get_transactions(
-        db=SessionDep,
+        db: SessionDep,
         skip: int = 0,
         limit: int = 100
 ) -> list[TransactionRead]:
@@ -24,7 +24,7 @@ def get_transactions(
 
 
 @transaction_router.get('/{id}')
-async def get_transaction(transaction_id: int, db=SessionDep) -> TransactionRead:
+def get_transaction(transaction_id: int, db: SessionDep) -> TransactionRead:
     statement = select(Transaction).where(Transaction.id == transaction_id)
-    transaction = db.exec(statement)
+    transaction = db.exec(statement).first()
     return TransactionRead.model_validate(transaction.model_dump())
