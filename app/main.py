@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+
 from app.router import transaction_router
 
 app = FastAPI()
