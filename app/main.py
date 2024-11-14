@@ -1,6 +1,7 @@
+from typing import Annotated
+
 from fastapi import FastAPI, Depends
 from sqlmodel import Session
-from typing import Annotated
 
 from database import get_session
 

@@ -1,6 +1,8 @@
+import os
+
 from dotenv import load_dotenv
 from sqlmodel import create_engine, Session
-import os
+
 
 # done for loading the local .evn file with the SQL_DATABASE_URL
 load_dotenv()
