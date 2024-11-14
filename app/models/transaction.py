@@ -1,6 +1,8 @@
 from datetime import datetime
-from sqlmodel import SQLModel, Field, Relationship
 from enum import Enum
+
+from sqlmodel import SQLModel, Field, Relationship
+
 
 
 class TransactionType(str, Enum):
