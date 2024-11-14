@@ -1,15 +1,6 @@
-from typing import Annotated
-
 from fastapi import FastAPI, Depends
-from sqlmodel import Session
 
-from database import get_session
-
+from app.router import transaction_router
 
 app = FastAPI()
-SessionDep = Annotated[Session, Depends(get_session)]
-
-
-@app.get("/")
-async def root(session: SessionDep):
-    return {"message": "Hello World"}
+app.include_router(transaction_router)
