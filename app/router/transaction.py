@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends
 from typing import Annotated
+
+from fastapi import APIRouter, Depends
 from sqlmodel import Session, select
 
-from app.models import TransactionRead, Transaction
 from app.database import get_session
+from app.models import TransactionRead, Transaction
 
 transaction_router = APIRouter(
     prefix='/transaction'

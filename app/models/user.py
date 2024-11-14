@@ -1,6 +1,7 @@
 from datetime import datetime
-from sqlmodel import SQLModel, Field, Relationship
 from typing import List
+
+from sqlmodel import SQLModel, Field, Relationship
 
 
 class UserBase(SQLModel):
