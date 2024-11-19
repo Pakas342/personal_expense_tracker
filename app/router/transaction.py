@@ -34,8 +34,9 @@ def get_transaction(user_id: int, transaction_id: int, db: SessionDep) -> Transa
 
 # Sin revisar porque necesitamos un user primero
 @transaction_router.post('/')
-def create_transaction(user_id: int, transaction: TransactionBase, db: SessionDep) -> TransactionRead:
+def create_transaction(user_id: int, transaction: TransactionBase, db: SessionDep):
     new_transaction = Transaction.model_validate(transaction)
     db.add(new_transaction)
     db.commit()
+    db.refresh(new_transaction)
     return TransactionRead.model_validate(new_transaction.model_dump())
