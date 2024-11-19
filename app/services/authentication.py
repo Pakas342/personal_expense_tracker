@@ -37,8 +37,8 @@ def get_user(db: SessionDep, email: str) -> User | bool:
         return user
 
 
-def authenticate_user(username: str, password: str) -> User | bool:
-    user = get_user(email=username)
+def authenticate_user(db: SessionDep, email: str, password: str) -> User | bool:
+    user = get_user(db=db, email=email)
     if not user:
         return False
     if not verify_password(user.password, password):
