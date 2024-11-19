@@ -17,4 +17,5 @@ def user_signup(user: UserBase, db: SessionDep) -> UserRead:
     new_user = User.model_validate(user)
     db.add(new_user)
     db.commit()
+    db.refresh(new_user)
     return UserRead.model_validate(new_user.model_dump())

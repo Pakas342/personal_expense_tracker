@@ -9,8 +9,8 @@ load_dotenv()
 
 sql_url = os.getenv('SQL_DATABASE_URL')
 
-connect_args = {"check_same_thread": False}
-engine = create_engine(sql_url, connect_args=connect_args)
+
+engine = create_engine(sql_url)
 
 
 def get_session() -> Session:
