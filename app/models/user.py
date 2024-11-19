@@ -1,7 +1,11 @@
 from datetime import datetime
 from typing import List
+from typing import TYPE_CHECKING
 
 from sqlmodel import SQLModel, Field, Relationship
+
+if TYPE_CHECKING:
+    from app.models.transaction import Transaction
 
 
 class UserBase(SQLModel):
