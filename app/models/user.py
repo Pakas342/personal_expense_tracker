@@ -1,8 +1,9 @@
 from datetime import datetime
 from typing import List
-from typing import TYPE_CHECKING
+from typing import Annotated, TYPE_CHECKING
 
 from sqlmodel import SQLModel, Field, Relationship
+from fastapi.security import OAuth2PasswordBearer
 
 # Had to take this outside of the typechecking because this is not a SQLmodel, but a pydantic data class,
 # and pydantic requires the data classes to be solved right away on runtime
@@ -12,6 +13,10 @@ from app.models.transaction import TransactionRead
 # to solve the import right away
 if TYPE_CHECKING:
     from app.models.transaction import Transaction
+
+
+# Creating a Oauth2_scheme:
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
 
 
 class UserBase(SQLModel):

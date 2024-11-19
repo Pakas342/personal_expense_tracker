@@ -1,16 +1,12 @@
-from typing import Annotated
+from fastapi import APIRouter
+from sqlmodel import select
 
-from fastapi import APIRouter, Depends
-from sqlmodel import Session, select
-
-from app.database import get_session
+from app.database import SessionDep
 from app.models import TransactionRead, Transaction, TransactionBase
 
 transaction_router = APIRouter(
     prefix='/user/transaction'
 )
-
-SessionDep = Annotated[Session, Depends(get_session)]
 
 
 @transaction_router.get("/", response_model=list[TransactionRead])
